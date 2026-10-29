@@ -1,0 +1,4 @@
+# Only install what you need:
+psycopg[binary]>=3.1     # PostgreSQL storage (--postgres)
+playwright>=1.40         # JavaScript-rendered websites (--js-fallback); then run: playwright install chromium
+pytest>=8.0              # running the tests

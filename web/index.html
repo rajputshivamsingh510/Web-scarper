@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lead Collector</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<aside><h2>Saved datasets</h2><ul id="runs"></ul><p id="noruns" class="muted" hidden>No datasets yet. Run a search.</p></aside>
+<main>
+<header><h1>Lead Collector</h1><span id="pill" class="pill">Idle</span></header>
+
+<section class="card"><h2>New search</h2>
+<form id="f">
+<label>Source<select name="source"><option value="overture">Overture Maps (free)</option><option value="osm">OpenStreetMap</option><option value="overture,osm">Overture + OSM</option></select></label>
+<label>State<input name="state" list="states" value="Punjab"></label>
+<label>City<input name="city" list="cities" placeholder="e.g. Ludhiana"></label>
+<label>Category<input name="category" list="cats" value="jewellers" required></label>
+<label>Max records<input name="target" type="number" min="1" max="50000" value="150"></label>
+<label>Min confidence (0–1)<input name="min_confidence" type="number" min="0" max="1" step="0.05" value="0"></label>
+<label class="wide">Bounding box (optional) <input name="bbox" placeholder="south,west,north,east"></label>
+<div class="checks wide">
+<label><input type="checkbox" name="skip_enrich"> Don’t visit websites</label>
+<label><input type="checkbox" name="require_phone"> Only with phone</label>
+<label><input type="checkbox" name="require_website"> Only with website</label>
+<label><input type="checkbox" name="pilot" checked> Pilot checks</label></div>
+<button class="primary wide" id="go">Start search</button><p id="err" class="error wide" hidden></p>
+</form>
+<datalist id="states"><option>Punjab<option>Haryana<option>Himachal Pradesh<option>Delhi<option>Chandigarh<option>Rajasthan<option>Uttar Pradesh<option>Gujarat<option>Maharashtra</datalist>
+<datalist id="cities"><option>Ludhiana<option>Amritsar<option>Jalandhar<option>Patiala<option>Bathinda<option>Mohali<option>Chandigarh<option>Pathankot<option>Hoshiarpur</datalist>
+<datalist id="cats"><option>jewellers<option>doctors<option>hospitals<option>petrol_pumps<option>manufacturers<option>real_estate<option>restaurants<option>hotels<option>car_showrooms<option>wholesalers</datalist>
+</section>
+
+<section class="card" id="jobcard" hidden>
+<div class="row"><h2 id="jobtitle">Current execution</h2><span id="jobstate" class="pill"></span><button id="cancel" class="ghost">Cancel</button></div>
+<div class="bar"><div id="barfill"></div></div><p id="jobinfo" class="muted"></p>
+<pre id="log"></pre></section>
+
+<section class="card" id="results" hidden>
+<div class="row"><h2 id="rtitle"></h2><a id="dl" class="btn" href="#">Download CSV</a></div>
+<div id="stats" class="stats"></div>
+<div class="row filters"><input id="q" type="search" placeholder="Filter rows…">
+<label><input type="checkbox" id="fp"> has phone</label><label><input type="checkbox" id="fw"> has website</label><span id="count" class="muted"></span></div>
+<div class="scroll"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+<div class="row pager"><button id="prev" class="ghost">‹ Prev</button><span id="page" class="muted"></span><button id="next" class="ghost">Next ›</button></div>
+<details><summary>Full report</summary><pre id="report"></pre></details>
+</section>
+</main>
+
+<dialog id="dlg"><p id="dmsg"></p><div class="row end"><button class="ghost" id="dno">Keep</button><button class="danger" id="dyes">Delete</button></div></dialog>
+<script src="app.js"></script></body></html>

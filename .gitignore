@@ -1,0 +1,32 @@
+# Secrets: never commit these (keep .env.example instead)
+.env
+.env.*
+!.env.example
+
+# Collected data and run output (contains business contact details)
+data/
+*.jsonl
+leads*.csv
+!samples/sample_output_ILLUSTRATIVE.csv
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Packaged copies
+*.zip
